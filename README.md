@@ -4,6 +4,8 @@ Extend an [Architect](https://arc.codes) `@http` function with a powerful reques
 
 Obelisk Arc is powered by [`find-my-way`](https://github.com/delvedor/find-my-way) - used by Fastify and Restify. Obelisk adopts route-matching from `find-my-way` and maintains handler compatibility with [`@architect/functions`](https://arc.codes/docs/en/reference/runtime-helpers/node.js), specifically `arc.http`.
 
+**Try the [DEMO application](https://fvlnhrawzd.execute-api.us-west-2.amazonaws.com/).**
+
 ## Install
 
 Make sure you actually want a "fat function", then:
