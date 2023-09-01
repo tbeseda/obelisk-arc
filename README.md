@@ -93,7 +93,7 @@ Note that handler functions are _mostly_ Architect Functions handlers. See [Hand
 
 ```js
 router.on("GET", "/things/:id", ({ routeParams }) => {
-  const { id } = params;
+  const { id } = routeParams;
 
   return {
     statusCode: 200,

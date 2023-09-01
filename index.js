@@ -17,6 +17,7 @@ export default class {
 	constructor(options = {}) {
 		const { defaultRoute, rootPath = "" } = options;
 
+		// TODO: move rootPath to mount() options
 		this.rootPath = rootPath;
 
 		if (defaultRoute) this.defaultRoute = defaultRoute;
