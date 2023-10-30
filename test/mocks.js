@@ -6,52 +6,52 @@
 
 /** @type {Context} */
 const context = {
-	awsRequestId: "mock-aws-request-id",
-	functionName: "mock-function-name",
-	functionVersion: "mock-function-version",
-	invokedFunctionArn: "mock-invoked-function-arn",
-	logGroupName: "mock-log-group-name",
-	logStreamName: "mock-log-stream-name",
-	memoryLimitInMB: "128",
-	callbackWaitsForEmptyEventLoop: true,
-	getRemainingTimeInMillis: () => 1000,
-	done: () => {},
-	fail: () => {},
-	succeed: () => {},
-};
+  awsRequestId: 'mock-aws-request-id',
+  functionName: 'mock-function-name',
+  functionVersion: 'mock-function-version',
+  invokedFunctionArn: 'mock-invoked-function-arn',
+  logGroupName: 'mock-log-group-name',
+  logStreamName: 'mock-log-stream-name',
+  memoryLimitInMB: '128',
+  callbackWaitsForEmptyEventLoop: true,
+  getRemainingTimeInMillis: () => 1000,
+  done: () => {},
+  fail: () => {},
+  succeed: () => {},
+}
 
 /** @type {ArcRequest} */
 const req = {
-	version: "2.0",
-	path: "/my/path",
-	headers: {
-		header1: "value1",
-		header2: "value1,value2",
-	},
-	queryStringParameters: {
-		parameter1: "value1,value2",
-		parameter2: "value",
-	},
-	pathParameters: { parameter1: "value1" },
-	method: "GET",
-	httpMethod: "GET",
-	isBase64Encoded: false,
-	params: {},
-	query: {},
-	body: null,
-	rawBody: "",
-	resource: "/{proxy+}",
-	session: {},
-};
+  version: '2.0',
+  path: '/my/path',
+  headers: {
+    header1: 'value1',
+    header2: 'value1,value2',
+  },
+  queryStringParameters: {
+    parameter1: 'value1,value2',
+    parameter2: 'value',
+  },
+  pathParameters: { parameter1: 'value1' },
+  method: 'GET',
+  httpMethod: 'GET',
+  isBase64Encoded: false,
+  params: {},
+  query: {},
+  body: null,
+  rawBody: '',
+  resource: '/{proxy+}',
+  session: {},
+}
 
 /** @type {ObeliskArcRequest} */
 const rootRequest = {
-	...req,
-	path: "/",
-	headers: {},
-	queryStringParameters: {},
-	pathParameters: {},
-	routeParams: {},
-};
+  ...req,
+  path: '/',
+  headers: {},
+  queryStringParameters: {},
+  pathParameters: {},
+  routeParams: {},
+}
 
-export { rootRequest, context };
+export { rootRequest, context }

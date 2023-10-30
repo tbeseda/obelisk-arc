@@ -8,9 +8,11 @@
     "index.js"
   ],
   "scripts": {
-    "format": "biome format --write ./index.js",
+    "lint": "eslint --ext .js --ext .mjs .",
+    "lint.fix": "npm run lint -- --fix",
+    "release": "release-it",
     "tape": "tape test/*.js | tap-arc",
-    "test": "npm run format && npm run tape"
+    "test": "npm run lint && npm run tape"
   },
   "author": "tbeseda",
   "license": "MIT",
@@ -22,14 +24,29 @@
     "@architect/functions": "~7.0.0"
   },
   "dependencies": {
-    "find-my-way": "^7.6.2"
+    "find-my-way": "^7.7.0"
   },
   "devDependencies": {
     "@architect/functions": "^7.0.0",
-    "@architect/sandbox": "^5.8.0",
-    "@biomejs/biome": "^1.0.0",
-    "@types/aws-lambda": "^8.10.119",
-    "tap-arc": "^0.4.0",
-    "tape": "^5.6.6"
+    "@architect/sandbox": "^5.9.1",
+    "@types/aws-lambda": "^8.10.125",
+    "eslint": "^8.52.0",
+    "eslint-config-standard": "^17.1.0",
+    "release-it": "^16.2.1",
+    "tap-arc": "^1.2.0",
+    "tape": "^5.7.2"
+  },
+  "eslintConfig": {
+    "extends": "standard",
+    "ignorePatterns": [
+      "**/vendor"
+    ],
+    "rules": {
+      "space-unary-ops": 0,
+      "comma-dangle": [
+        "error",
+        "always-multiline"
+      ]
+    }
   }
 }
