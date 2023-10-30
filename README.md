@@ -75,14 +75,6 @@ function defaultRoute ({ method, path }) {
 const router = new Router({ defaultRoute });
 ```
 
-#### `rootPath` is optional
-
-Describe the path where the router is mounted. Use a leading slash but not a trailing.
-
-```js
-const router = new Router({ rootPath: "/api" });
-```
-
 ### Instance Methods
 
 #### `on(method, path, handler)`
@@ -103,7 +95,7 @@ router.on("GET", "/things/:id", ({ routeParams }) => {
 });
 ```
 
-#### `mount()`
+#### `mount(options)`
 
 Mount to router to Architect's `http` helper which is in turn returned as the Lambda handler.
 
@@ -123,6 +115,18 @@ router.on(
 
 export const handler = arc.http(router.mount());
 ```
+
+##### `options.rootPath` is optional
+
+Describe the path where the router is mounted. Use a leading slash; omit a trailing slash.
+
+```js
+router.mount({ rootPath: "/api" })
+```
+
+See `./example/src/any-api-catchall/index.mjs` for a simple example.
+
+See `./example/src/get-thing-000id-catchall/index.mjs` for an example combining Arc path `params` and Obelisk `routeParams`
 
 ### Instance Properties
 
