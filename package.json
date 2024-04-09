@@ -8,11 +8,9 @@
     "index.js"
   ],
   "scripts": {
-    "lint": "eslint --ext .js --ext .mjs .",
-    "lint.fix": "npm run lint -- --fix",
     "release": "release-it",
     "tape": "tape test/*.js | tap-arc",
-    "test": "npm run lint && npm run tape"
+    "test": "npm run tape"
   },
   "author": "tbeseda",
   "license": "MIT",
@@ -21,32 +19,17 @@
     "url": "git+https://github.com/tbeseda/obelisk-arc.git"
   },
   "peerDependencies": {
-    "@architect/functions": "~7.0.0"
+    "@architect/functions": "~8.1.0"
   },
   "dependencies": {
     "find-my-way": "^7.7.0"
   },
   "devDependencies": {
-    "@architect/functions": "^7.0.0",
-    "@architect/sandbox": "^5.9.1",
-    "@types/aws-lambda": "^8.10.125",
-    "eslint": "^8.52.0",
-    "eslint-config-standard": "^17.1.0",
+    "@architect/functions": "^8.1.0",
+    "@architect/sandbox": "^6.0.4",
+    "@types/aws-lambda": "^8.10.137",
     "release-it": "^16.2.1",
     "tap-arc": "^1.2.0",
     "tape": "^5.7.2"
-  },
-  "eslintConfig": {
-    "extends": "standard",
-    "ignorePatterns": [
-      "**/vendor"
-    ],
-    "rules": {
-      "space-unary-ops": 0,
-      "comma-dangle": [
-        "error",
-        "always-multiline"
-      ]
-    }
   }
 }
