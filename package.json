@@ -1,10 +1,12 @@
 {
   "name": "obelisk-arc",
-  "version": "0.0.4",
+  "version": "0.1.0-0",
   "description": "Extend an Architect HTTP function with a request router",
   "type": "module",
   "main": "index.js",
-  "files": ["index.js"],
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "check-updates": "npx npm-check-updates",
     "lint": "biome lint --apply . && biome format --write .",
