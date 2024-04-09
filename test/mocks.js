@@ -5,7 +5,7 @@
 // create mock API Gateway event and Context to invoke lambdaHandler
 
 /** @type {Context} */
-const context = {
+export const context = {
   awsRequestId: 'mock-aws-request-id',
   functionName: 'mock-function-name',
   functionVersion: 'mock-function-version',
@@ -15,9 +15,9 @@ const context = {
   memoryLimitInMB: '128',
   callbackWaitsForEmptyEventLoop: true,
   getRemainingTimeInMillis: () => 1000,
-  done: () => {},
-  fail: () => {},
-  succeed: () => {},
+  done: () => { },
+  fail: () => { },
+  succeed: () => { },
 }
 
 /** @type {ArcRequest} */
@@ -45,7 +45,7 @@ const req = {
 }
 
 /** @type {ObeliskArcRequest} */
-const rootRequest = {
+export const rootRequest = {
   ...req,
   path: '/',
   headers: {},
@@ -54,4 +54,10 @@ const rootRequest = {
   routeParams: {},
 }
 
-export { rootRequest, context }
+/** @type {ObeliskArcRequest} */
+export const apiReq = {
+  ...req,
+  path: '/api/things/near/123-456/radius/789',
+  routeParams: {},
+}
+

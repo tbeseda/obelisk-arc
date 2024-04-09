@@ -1,7 +1,7 @@
 import arc from '@architect/functions'
 import Router from 'obelisk-arc'
 
-const router = new Router()
+export const router = new Router()
 
 router.on('GET', '/', async () => {
   const link = '/api/things/near/123-456/radius/789?foo=bar'
@@ -38,7 +38,7 @@ router.on(
   },
 )
 
-async function middleware () {
+async function middleware() {
   console.log('doing middleware things...')
 }
 

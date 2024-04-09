@@ -10,11 +10,11 @@ export default class {
   router
   rootPath = ''
   handlers = new Map()
-  defaultRoute (_req, _context) {
+  defaultRoute(_req, _context) {
     return { status: 404 }
   }
 
-  constructor (options = {}) {
+  constructor(options = {}) {
     const { defaultRoute } = options
 
     if (defaultRoute) this.defaultRoute = defaultRoute
@@ -32,7 +32,7 @@ export default class {
    * @param {RouterHandler} handler
    * @returns {{method, path}} routes map key
    */
-  on (method, path, handler) {
+  on(method, path, handler) {
     const routeKey = { method, path }
 
     this.handlers.set(routeKey, handler)
@@ -47,7 +47,7 @@ export default class {
    * @param {string} [options.rootPath] root path to mount the router at
    * @returns {ArcHandler}
    */
-  mount (options = {}) {
+  mount(options = {}) {
     const { rootPath } = options
     if (rootPath) this.rootPath = rootPath
 
@@ -59,7 +59,9 @@ export default class {
     return async (req, context) => {
       const { method, path } = req
       // router is keyed without rootPath
-      const routerPath = path.slice(this.rootPath.length)
+      const routerPath = path.startsWith(this.rootPath)
+        ? path.slice(this.rootPath.length)
+        : path
       const found = this.router.find(method, routerPath)
 
       if (found?.handler) {
