@@ -59,7 +59,8 @@ export default class {
     return async (req, context) => {
       const { method, path } = req
       // router is keyed without rootPath
-      const routerPath = path.startsWith(this.rootPath) ? path.slice(this.rootPath.length) : path
+      const routerPath =
+        this.rootPath && path.startsWith(this.rootPath) ? path.slice(this.rootPath.length) : path
       const found = this.router.find(method, routerPath)
 
       if (found?.handler) {
