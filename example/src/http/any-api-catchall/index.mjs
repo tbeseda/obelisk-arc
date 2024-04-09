@@ -19,24 +19,20 @@ router.on('GET', '/', async () => {
   }
 })
 
-router.on(
-  'GET',
-  '/things/near/:lat-:lng/radius/:r',
-  async ({ routeParams, query }) => {
-    const { lat, lng, r } = routeParams
+router.on('GET', '/things/near/:lat-:lng/radius/:r', async ({ routeParams, query }) => {
+  const { lat, lng, r } = routeParams
 
-    // do something with route and query params
+  // do something with route and query params
 
-    return {
-      json: {
-        lat,
-        lng,
-        r,
-        query,
-      },
-    }
-  },
-)
+  return {
+    json: {
+      lat,
+      lng,
+      r,
+      query,
+    },
+  }
+})
 
 async function middleware() {
   console.log('doing middleware things...')

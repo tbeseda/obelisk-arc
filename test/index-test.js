@@ -1,8 +1,8 @@
 import test from 'tape'
-import Router from '../index.js'
-import { router } from '../example/src/http/any-catchall/index.mjs'
 import { router as apiRouter } from '../example/src/http/any-api-catchall/index.mjs'
-import { rootRequest, apiReq, context } from './mocks.js'
+import { router } from '../example/src/http/any-catchall/index.mjs'
+import Router from '../index.js'
+import { apiReq, context, rootRequest } from './mocks.js'
 
 test('Obelisk Arc', async (t) => {
   t.ok(router instanceof Router, 'router is an instance of Router')
@@ -15,7 +15,6 @@ test('Obelisk Arc', async (t) => {
 
   if (!result) {
     t.fail('arcHandler returned undefined')
-    return
   } else {
     t.ok(
       result.html?.includes('<title>Obelisk Arc</title>'),
@@ -35,7 +34,6 @@ test('Obelisk Arc, mounted', async (t) => {
 
   if (!result) {
     t.fail('arcHandler returned undefined')
-    return
   } else {
     t.ok(result.json?.lat, 'json.lat exists')
     t.ok(result.json?.lng, 'json.lng exists')

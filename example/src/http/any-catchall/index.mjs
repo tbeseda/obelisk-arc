@@ -71,17 +71,13 @@ router.on('GET', '/things/:id', async ({ routeParams }) => {
   return { json: { thingId: id } }
 })
 
-router.on(
-  'GET',
-  '/things/near/:lat-:lng/radius/:r',
-  async ({ routeParams, query }) => {
-    const { lat, lng, r } = routeParams
-    const { foo } = query
+router.on('GET', '/things/near/:lat-:lng/radius/:r', async ({ routeParams, query }) => {
+  const { lat, lng, r } = routeParams
+  const { foo } = query
 
-    // do something with route and query params
+  // do something with route and query params
 
-    return { json: { lat, lng, r, foo } }
-  },
-)
+  return { json: { lat, lng, r, foo } }
+})
 
 export const handler = arc.http(router.mount())

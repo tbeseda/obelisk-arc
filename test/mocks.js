@@ -15,9 +15,9 @@ export const context = {
   memoryLimitInMB: '128',
   callbackWaitsForEmptyEventLoop: true,
   getRemainingTimeInMillis: () => 1000,
-  done: () => { },
-  fail: () => { },
-  succeed: () => { },
+  done: () => {},
+  fail: () => {},
+  succeed: () => {},
 }
 
 /** @type {ArcRequest} */
@@ -60,4 +60,3 @@ export const apiReq = {
   path: '/api/things/near/123-456/radius/789',
   routeParams: {},
 }
-
