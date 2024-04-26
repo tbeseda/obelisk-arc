@@ -1,18 +1,16 @@
 {
   "name": "obelisk-arc",
-  "version": "0.0.4",
+  "version": "0.1.0-0",
   "description": "Extend an Architect HTTP function with a request router",
   "type": "module",
   "main": "index.js",
-  "files": [
-    "index.js"
-  ],
+  "files": ["index.js"],
   "scripts": {
-    "lint": "eslint --ext .js --ext .mjs .",
-    "lint.fix": "npm run lint -- --fix",
+    "check-updates": "npx npm-check-updates",
+    "lint": "biome lint --apply . && biome format --write .",
     "release": "release-it",
     "tape": "tape test/*.js | tap-arc",
-    "test": "npm run lint && npm run tape"
+    "test": "biome ci . && npm run tape"
   },
   "author": "tbeseda",
   "license": "MIT",
@@ -21,32 +19,18 @@
     "url": "git+https://github.com/tbeseda/obelisk-arc.git"
   },
   "peerDependencies": {
-    "@architect/functions": "~7.0.0"
+    "@architect/functions": "~8.1.0"
   },
   "dependencies": {
-    "find-my-way": "^7.7.0"
+    "find-my-way": "^8.1.0"
   },
   "devDependencies": {
-    "@architect/functions": "^7.0.0",
-    "@architect/sandbox": "^5.9.1",
-    "@types/aws-lambda": "^8.10.125",
-    "eslint": "^8.52.0",
-    "eslint-config-standard": "^17.1.0",
-    "release-it": "^16.2.1",
-    "tap-arc": "^1.2.0",
-    "tape": "^5.7.2"
-  },
-  "eslintConfig": {
-    "extends": "standard",
-    "ignorePatterns": [
-      "**/vendor"
-    ],
-    "rules": {
-      "space-unary-ops": 0,
-      "comma-dangle": [
-        "error",
-        "always-multiline"
-      ]
-    }
+    "@architect/functions": "^8.1.0",
+    "@architect/sandbox": "^6.0.4",
+    "@biomejs/biome": "1.6.4",
+    "@types/aws-lambda": "^8.10.137",
+    "release-it": "^17.1.1",
+    "tap-arc": "^1.2.2",
+    "tape": "^5.7.5"
   }
 }

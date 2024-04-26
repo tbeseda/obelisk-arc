@@ -3,10 +3,10 @@
     "start": "sandbox"
   },
   "dependencies": {
-    "@architect/functions": "^7.0.0",
+    "@architect/functions": "^8.1.0",
     "obelisk-arc": "file:../"
   },
   "devDependencies": {
-    "@architect/sandbox": "^5.8.0"
+    "@architect/sandbox": "^6.0.4"
   }
 }

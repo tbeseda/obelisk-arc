@@ -7,18 +7,15 @@
 import FindMyWay from 'find-my-way'
 
 export default class {
-  rootPath
   router
+  rootPath = ''
   handlers = new Map()
-  defaultRoute (_req, _context) {
+  defaultRoute(_req, _context) {
     return { status: 404 }
   }
 
-  constructor (options = {}) {
-    const { defaultRoute, rootPath = '' } = options
-
-    // TODO: move rootPath to mount() options
-    this.rootPath = rootPath
+  constructor(options = {}) {
+    const { defaultRoute } = options
 
     if (defaultRoute) this.defaultRoute = defaultRoute
 
@@ -33,24 +30,27 @@ export default class {
    * @param {FindMyWay.HTTPMethod | FindMyWay.HTTPMethod[]} method
    * @param {string} path
    * @param {RouterHandler} handler
-   * @returns {{method, fullPath}} routes map key
+   * @returns {{method, path}} routes map key
    */
-  on (method, path, handler) {
-    const fullPath = `${this.rootPath}${path}`
-    const routeKey = { method, fullPath }
+  on(method, path, handler) {
+    const routeKey = { method, path }
 
     this.handlers.set(routeKey, handler)
-    this.router.on(method, fullPath, () => routeKey)
+    this.router.on(method, path, () => routeKey)
 
     return routeKey
   }
 
   /**
    * Mount the router in arc.http
-   * @param {object} [options] reserved for future use
+   * @param {object} [options] mount options
+   * @param {string} [options.rootPath] root path to mount the router at
    * @returns {ArcHandler}
    */
-  mount (options = {}) {
+  mount(options = {}) {
+    const { rootPath } = options
+    if (rootPath) this.rootPath = rootPath
+
     /**
      * @param {ArcRequest} req
      * @param {LambdaContext} context
@@ -58,24 +58,23 @@ export default class {
      */
     return async (req, context) => {
       const { method, path } = req
-
-      const found = this.router.find(method, path)
+      // router is keyed without rootPath
+      const routerPath =
+        this.rootPath && path.startsWith(this.rootPath) ? path.slice(this.rootPath.length) : path
+      const found = this.router.find(method, routerPath)
 
       if (found?.handler) {
         const { params: routeParams } = found
-        const payload = { ...req, routeParams }
+        const request = { ...req, routeParams }
         // @ts-ignore handler isn't "real" handler, just a pointer
         const routeKey = found.handler()
-        const result = await this.handlers.get(routeKey)(payload, context)
+        const handler = this.handlers.get(routeKey)
+        const result = await handler(request, context)
 
-        if (result) {
-          return result
-        } else {
-          return this.defaultRoute(payload, context)
-        }
-      } else {
-        return this.defaultRoute(req, context)
+        return result || this.defaultRoute(request, context)
       }
+
+      return this.defaultRoute(req, context)
     }
   }
 }
